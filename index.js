@@ -1,7 +1,17 @@
 const express = require('express');
+const mongoose = require('mongoose');
 
 require('./services/passport');
+const keys = require('./config/keys');
 const authRoutes = require('./routes/authRoutes');
+require('./models/User');
+
+mongoose.connect(keys.mongoURL),
+    {
+        useNewUrlParser: true,
+        useCreateIndex: true,
+        useUnifiedTopology: true,
+    };
 
 //there are many projects with several express app but in this one there's only one 
 const app = express();
