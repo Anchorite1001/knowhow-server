@@ -1,6 +1,7 @@
 const passport = require('passport');
 
 module.exports = (app) => {
+
     //route handlers
     app.get('/', (req, res) => {
         res.send({ hi:'there' });
@@ -15,4 +16,8 @@ module.exports = (app) => {
 
     // passportJS would see the code in the url and automatically exchange that with google user info
     app.get('/auth/google/callback', passport.authenticate('google'));
+
+    app.get('/api/current_user', (req, res) => {
+        res.send(req.user);
+    })
 }
